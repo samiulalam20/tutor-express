@@ -9,14 +9,33 @@ import Card from '@material-ui/core/Card'
 import { CardContent } from '@material-ui/core'
 import { Typography } from '@material-ui/core'
 import { TextField } from '@material-ui/core'
+import FormControl from '@material-ui/core/FormControl';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormLabel from '@material-ui/core/FormLabel';
+import Input from '@material-ui/core/Input';
+import { InputLabel } from '@material-ui/core'
+import { MenuItem } from '@material-ui/core'
+import { Select } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
     card: {
-        minWidth: 500,
-        maxWidth: 600,
-    margin: 'auto',
-    textAlign: 'center'
-    }
+      width: 700,
+      margin: 'auto',
+      textAlign: 'center',
+      marginTop: theme.spacing(12),
+      paddingBottom: theme.spacing(2)
+    },
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
+    textField: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: 300
+    },
 }))
 
 export default function Apply(props) {
@@ -61,6 +80,17 @@ export default function Apply(props) {
     })
   }
 
+  const location= [
+    'Uttara Sector-1, Dhaka',
+        'Bashundhara Block-B, Dhaka',
+        'Baridhara DOHS, Dhaka',
+        'Gulshan-2, Dhaka',
+        'Banani, Dhaka',
+        'Dhaka Cantonment, Dhaka',
+        'Mirpur-10, Dhaka',
+        'Dhanmondi, Dhaka',
+  ]
+
   const handleChange = name => event => {
     const value = name === 'image'
       ? event.target.files[0]
@@ -84,19 +114,61 @@ export default function Apply(props) {
           <TextField id="tutorName" label="Name" className={classes.textField} value={values.tutorName} onChange={handleChange('tutorName')} margin="normal"/><br/>
           <TextField id="tutorPhoneNum" label="Phone Number" className={classes.textField} value={values.tutorPhoneNum} onChange={handleChange('tutorPhoneNum')} margin="normal"/><br/>
           <TextField id="tutorLocation" label="Present Location" className={classes.textField} value={values.tutorLocation} onChange={handleChange('tutorLocation')} margin="normal"/><br/>
-          <TextField id="name" label="Gender" className={classes.textField} value={values.gender} onChange={handleChange('gender')} margin="normal"/><br/>
-          <TextField
-            id="multiline-flexible"
-            label="School Curriculum"
-            multiline
-            rows="2"
-            value={values.schoolCur}
-            onChange={handleChange('schoolCur')}
-            className={classes.textField}
-            margin="normal"
-          /><br/> 
-          <TextField id="collegeCur" label="College Curriculam" className={classes.textField} value={values.collegeCur} onChange={handleChange('collegeCur')} margin="normal"/><br/>
-          <TextField id="studyBg" label="Background of Study" className={classes.textField} value={values.studyBg} onChange={handleChange('studyBg')} margin="normal"/><br/>
+
+          <FormControl className={classes.formControl}>
+        <InputLabel id="tutorLocation">Present Location</InputLabel>
+          <Select
+          className={classes.textField}
+          labelId="tutorLocation"
+          id="tutorLocation"
+          value={values.tutorLocation}
+          onChange={handleChange('tutorLocation')}
+          input={<Input id="tutorLocation" />}
+          >
+          {location.map((tutorLocation) => (
+            <MenuItem key={tutorLocation} value={tutorLocation} >
+              {tutorLocation}
+            </MenuItem>
+          ))}
+
+
+        </Select>
+      </FormControl>
+          
+          <FormControl component="fieldset" className={classes.formControl}>
+      <FormLabel component="legend">Gender</FormLabel>
+        <RadioGroup aria-label="Gender" name="gender" value={values.gender} onChange={handleChange('gender')}>
+        <FormControlLabel value="Male" control={<Radio />} label="Male" />
+        <FormControlLabel value="Female" control={<Radio />} label="Female" />
+        </RadioGroup>
+      </FormControl><br/>
+
+      <FormControl component="fieldset" className={classes.formControl}>
+      <FormLabel component="legend">School Curriculum</FormLabel>
+        <RadioGroup aria-label="School Curriculum" name="schoolCur" value={values.schoolCur} onChange={handleChange('schoolCur')}>
+        <FormControlLabel value="English Medium" control={<Radio />} label="English Medium" />
+        <FormControlLabel value="Bangla Medium" control={<Radio />} label="Bangla Medium" />
+        <FormControlLabel value="English Version" control={<Radio />} label="English Version" />
+        </RadioGroup>
+      </FormControl><br/>
+
+      <FormControl component="fieldset" className={classes.formControl}>
+      <FormLabel component="legend">College Curriculum</FormLabel>
+        <RadioGroup aria-label="College Curriculum" name="collegeCur" value={values.collegeCur} onChange={handleChange('collegeCur')}>
+        <FormControlLabel value="English Medium" control={<Radio />} label="English Medium" />
+        <FormControlLabel value="Bangla Medium" control={<Radio />} label="Bangla Medium" />
+        <FormControlLabel value="English Version" control={<Radio />} label="English Version" />
+        </RadioGroup>
+      </FormControl><br/>
+
+      <FormControl component="fieldset" className={classes.formControl}>
+      <FormLabel component="legend">Background of Study</FormLabel>
+        <RadioGroup aria-label="Background of Study" name="studyBg" value={values.studyBg} onChange={handleChange('studyBg')}>
+        <FormControlLabel value="Science" control={<Radio />} label="Science" />
+        <FormControlLabel value="Commerce" control={<Radio />} label="Commerce" />
+        </RadioGroup>
+      </FormControl><br/>
+
           <TextField id="universityName" label="Name of University" className={classes.textField} value={values.universityName} onChange={handleChange('universityName')} margin="normal"/><br/>
           <TextField id="major" label="Major" className={classes.textField} value={values.major} onChange={handleChange('major')} margin="normal"/><br/>
           

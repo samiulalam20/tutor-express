@@ -94,7 +94,7 @@ export default function NewTuition() {
   const location= [
     'Uttara Sector-1, Dhaka',
         'Bashundhara Block-B, Dhaka',
-        'Baridhara DOHS',
+        'Baridhara DOHS, Dhaka',
         'Gulshan-2, Dhaka',
         'Banani, Dhaka',
         'Dhaka Cantonment, Dhaka',

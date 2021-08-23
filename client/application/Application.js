@@ -228,7 +228,7 @@ export default function Application ({match}) {
                 <CardHeader
                   title={application.tuition.name}
                   subheader={<div>
-                        <Link to={"/user/"+application.tuition.guardian._id} className={classes.sub}>By {application.tuition.guardian.name}</Link>
+                        <span className={classes.sub}>By {application.tuition.guardian.name}</span>
                         <span className={classes.category}>{application.tuition.category}</span>
                       </div>
                     }
@@ -250,25 +250,28 @@ export default function Application ({match}) {
                   <div className={classes.details}>
                     
                     <Typography variant="body1" className={classes.subheading}>
-                        {application.tuition.studentClass}<br/>
+                        Student Class: {application.tuition.studentClass}<br/>
                     </Typography>
                     <Typography variant="body1" className={classes.subheading}>
-                        {application.tuition.subjects}<br/>
+                        Category: {application.tuition.category}<br/>
                     </Typography>
                     <Typography variant="body1" className={classes.subheading}>
-                        {application.tuition.tutorGenderRequired}<br/>
+                        Subjects: {application.tuition.subjects}<br/>
                     </Typography>
                     <Typography variant="body1" className={classes.subheading}>
-                        {application.tuition.location}<br/>
+                        Tutor Gender Preference: {application.tuition.tutorGenderRequired}<br/>
                     </Typography>
                     <Typography variant="body1" className={classes.subheading}>
-                        {application.tuition.numberOfdays}<br/>
+                        Location: {application.tuition.location}<br/>
                     </Typography>
                     <Typography variant="body1" className={classes.subheading}>
-                        {application.tuition.salary}<br/>
+                        Number of Days/Week: {application.tuition.numberOfdays} Days<br/>
                     </Typography>
                     <Typography variant="body1" className={classes.subheading}>
-                        {application.tuition.description}<br/>
+                        Salary: {application.tuition.salary} BDT<br/>
+                    </Typography>
+                    <Typography variant="body1" className={classes.subheading}>
+                        Description: {application.tuition.description}<br/>
                     </Typography>
                   </div>
                 </div>
@@ -285,7 +288,7 @@ export default function Application ({match}) {
                 </span>)
             }
                 />
-                <List>
+                {/* <List>
                 {application.tuition.lessons && application.tuition.lessons.map((lesson, i) => {
                     return(<span key={i}>
                     <ListItem>
@@ -302,7 +305,7 @@ export default function Application ({match}) {
                     </span>)
                 }
                 )}
-                </List>
+                </List> */}
                 </div>
             </Card> }
              {values.drawer != -1 && (<>

@@ -55,9 +55,9 @@ export default function Applications(props){
         <GridList cellHeight={120} className={classes.gridList} cols={4}>
           {props.applications.map((tuition, i) => (
             <GridListTile key={i} className={classes.tile}>
-              <Link to={"/learn/"+tuition._id}><img className={classes.image} src={'/api/tuitions/photo/'+tuition.tuition._id} alt={tuition.tuition.name} /></Link>
+              <Link to={"/learn/"+tuition._id}><img className={classes.image} src={'/api/tuitions/photo/'+tuition.tuition._id} alt={tuition.tuition.category} /></Link>
               <GridListTileBar className={classes.tileBar}
-                title={<Link to={"/learn/"+tuition._id} className={classes.tileTitle}>{tuition.tuition.name}</Link>}
+                title={<Link to={"/learn/"+tuition._id} className={classes.tileTitle}>{tuition.tuition.studentClass}</Link>}
                 actionIcon={<div className={classes.action}>
                  {tuition.completed ? (<CompletedIcon color="secondary"/>)
                  : (<InProgressIcon className={classes.progress} />)

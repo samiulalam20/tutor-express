@@ -175,7 +175,7 @@ export default function Tuition ({match}) {
                 <CardHeader
                   title={tuition.name}
                   subheader={<div>
-                        <Link to={"/user/"+tuition.guardian._id} className={classes.sub}>By {tuition.guardian.name}</Link>
+                        <span className={classes.sub}>By {tuition.guardian.name}</span>
                         <span className={classes.category}>{tuition.category}</span>
                       </div>
                     }
@@ -199,6 +199,9 @@ export default function Tuition ({match}) {
              }
                 {tuition.posted && (<div>
                   <span className={classes.statSpan}><PeopleIcon /> {stats.totalApplied} enrolled </span>
+                  <Typography variant="body1" className={classes.subheading}>
+                        Location: <br/>
+                    </Typography>
                   
 
                   </div>
@@ -237,7 +240,7 @@ export default function Tuition ({match}) {
                     </Typography>
                     
                     
-              {tuition.posted && <div className={classes.enroll}><Apply tuitionId={tuition._id}/></div>} 
+              {tuition.posted && auth.isAuthenticated().user && auth.isAuthenticated().user._id !== tuition.guardian._id &&<div className={classes.enroll}><Apply tuitionId={tuition._id}/></div>} 
                     
                     
                   </div>
@@ -267,6 +270,7 @@ export default function Tuition ({match}) {
              }
                 {tuition.posted && (<div>
                   <span className={classes.statSpan}><PeopleIcon /> {stats.totalApplied} enrolled </span>
+                  
                   </div>
                   )}
                 

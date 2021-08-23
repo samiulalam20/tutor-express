@@ -18,14 +18,16 @@ const useStyles = makeStyles(theme => ({
     minHeight: 400
   },
   gridList: {
-    width: '50%',
+    width: '55%',
     minHeight: 200,
     padding: '16px 0 0px'
   },
   tile: {
     textAlign: 'center',
     border: '1px solid #cecece',
-    backgroundColor:'#04040c'
+    borderRadius: '5px',
+    backgroundColor:'#B3D9E5',
+    margin: '5px 5px'
   },
   image: {
     height: '100%'
@@ -59,7 +61,7 @@ export default function Tuitions(props){
                 <Link to={"/tuition/"+tuition._id}><img className={classes.image} src={'/api/tuitions/photo/'+tuition._id} alt={tuition.name} /></Link>
                 <GridListTileBar className={classes.tileBar}
                   title={<Link to={"/tuition/"+tuition._id} className={classes.tileTitle}>Need Tutor for {tuition.studentClass} Student</Link>}
-                  subtitle={<span>{tuition.category}</span>}
+                  subtitle={<span>Salary: {tuition.salary} BDT</span>}
                   actionIcon={
                     <div className={classes.action}>
                     {auth.isAuthenticated() ? <Button color="primary" variant="outlined">View to Apply</Button> : <Link to="/signin">Sign in to Apply</Link>}

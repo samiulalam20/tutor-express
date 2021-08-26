@@ -67,7 +67,6 @@ export default function NewTuition() {
       category: '',
       educationBg: '',
       studentClass: '',
-      image: '',
       category: '',
       tutorGenderRequired: '',
       subjects: [],
@@ -140,7 +139,6 @@ export default function NewTuition() {
     values.image && tuitionData.append('image', values.image)
     values.category && tuitionData.append('category', values.category)
     values.studentClass && tuitionData.append('studentClass', values.studentClass)
-    values.image && tuitionData.append('image', values.image)
     values.category && tuitionData.append('category', values.category)
     values.subjects && tuitionData.append('subjects', values.subjects)
     values.tutorGenderRequired && tuitionData.append('tutorGenderRequired', values.tutorGenderRequired)

@@ -113,7 +113,7 @@ export default function Apply(props) {
           
           <TextField id="tutorName" label="Name" className={classes.textField} value={values.tutorName} onChange={handleChange('tutorName')} margin="normal"/><br/>
           <TextField id="tutorPhoneNum" label="Phone Number" className={classes.textField} value={values.tutorPhoneNum} onChange={handleChange('tutorPhoneNum')} margin="normal"/><br/>
-          <TextField id="tutorLocation" label="Present Location" className={classes.textField} value={values.tutorLocation} onChange={handleChange('tutorLocation')} margin="normal"/><br/>
+          
 
           <FormControl className={classes.formControl}>
         <InputLabel id="tutorLocation">Present Location</InputLabel>

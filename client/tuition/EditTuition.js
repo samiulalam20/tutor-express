@@ -20,6 +20,16 @@ import {read, update} from './api-tuition.js'
 import {Link, Redirect} from 'react-router-dom'
 import auth from './../auth/auth-helper'
 import Divider from '@material-ui/core/Divider'
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormLabel from '@material-ui/core/FormLabel';
+import Input from '@material-ui/core/Input';
+import Chip from '@material-ui/core/Chip';
 
 const useStyles = makeStyles(theme => ({
     root: theme.mixins.gutters({
@@ -76,19 +86,29 @@ const useStyles = makeStyles(theme => ({
   },
   list: {
     backgroundColor: '#f3f3f3'
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
   }
 }))
 
 export default function EditTuition ({match}) {
   const classes = useStyles()
   const [tuition, setTuition] = useState({
-      name: '',
-      description: '',
-      image:'',
-      category:'',
+    name: '',
+    description: '',
+    image: '',
+    category: '',
+    tutorGenderRequired: '',
+    numberOfdays: '',
+    salary: '',
       guardian:{},
       lessons: []
-    })
+    })    
+
+
+
   const [values, setValues] = useState({
       redirect: false,
       error: ''
@@ -139,6 +159,9 @@ export default function EditTuition ({match}) {
     tuition.description && tuitionData.append('description', tuition.description)
     tuition.image && tuitionData.append('image', tuition.image)
     tuition.category && tuitionData.append('category', tuition.category)
+    tuition.tutorGenderRequired && tuitionData.append('tutorGenderRequired', tuition.tutorGenderRequired)
+    tuition.numberOfdays && tuitionData.append('numberOfdays', tuition.numberOfdays)
+    tuition.salary && tuitionData.append('salary', tuition.salary)
     tuitionData.append('lessons', JSON.stringify(tuition.lessons))
     update({
         tuitionId: match.params.tuitionId
@@ -171,7 +194,7 @@ export default function EditTuition ({match}) {
                     value={tuition.name} onChange={handleChange('name')}
                   />}
                   subheader={<div>
-                        <Link to={"/user/"+tuition.guardian._id} className={classes.sub}>By {tuition.guardian.name}</Link>
+                        <span className={classes.sub}>By {tuition.guardian.name}</span>
                         {<TextField
                     margin="dense"
                     label="Category"
@@ -203,6 +226,51 @@ export default function EditTuition ({match}) {
                     className={classes.textfield}
                     value={tuition.description} onChange={handleChange('description')}
                   /><br/><br/>
+
+
+      <FormControl component="fieldset" className={classes.formControl}>
+      <FormLabel component="legend">Category</FormLabel>
+        <RadioGroup aria-label="Category" name="category" value={tuition.category} onChange={handleChange('category')}>
+        <FormControlLabel value="English Medium" control={<Radio />} label="English Medium" />
+        <FormControlLabel value="Bangla Medium" control={<Radio />} label="Bangla Medium" />
+        <FormControlLabel value="English Version" control={<Radio />} label="English Version" />
+        </RadioGroup>
+      </FormControl>
+        
+      
+
+      <FormControl component="fieldset" className={classes.formControl}>
+      <FormLabel component="legend">Tutor Gender Preference</FormLabel>
+        <RadioGroup aria-label="Tutor Gender Preference" name="tutorGenderRequired" value={tuition.tutorGenderRequired} onChange={handleChange('tutorGenderRequired')}>
+        <FormControlLabel value="Male" control={<Radio />} label="Male" />
+        <FormControlLabel value="Female" control={<Radio />} label="Female" />
+        </RadioGroup>
+      </FormControl><br/>
+
+          
+          <FormControl className={classes.formControl}>
+        <InputLabel id="numberOfdays">Number of Days per Week</InputLabel>
+          <Select
+          className={classes.textField}
+          labelId="numberOfdays"
+          id="numberOfdays"
+          value={tuition.numberOfdays}
+          onChange={handleChange('numberOfdays')}
+          >
+          <MenuItem value={1}>1</MenuItem>
+          <MenuItem value={2}>2</MenuItem>
+          <MenuItem value={3}>3</MenuItem>
+          <MenuItem value={4}>4</MenuItem>
+          <MenuItem value={5}>5</MenuItem>
+          <MenuItem value={6}>6</MenuItem>
+          <MenuItem value={7}>7</MenuItem>
+        </Select>
+      </FormControl>
+      <br/>
+
+          
+          <TextField id="salary" label="Salary" className={classes.textField} value={tuition.salary} onChange={handleChange('salary')} margin="normal"/><br/>
+
                   <input accept="image/*" onChange={handleChange('image')} className={classes.input} id="icon-button-file" type="file" />
                  <label htmlFor="icon-button-file">
                     <Button variant="outlined" color="secondary" component="span">
@@ -215,7 +283,7 @@ export default function EditTuition ({match}) {
 
           </div>
                 <Divider/>
-                <div>
+                {/* <div>
                 <CardHeader
                   title={<Typography variant="h6" className={classes.subheading}>Lessons - Edit and Rearrange</Typography>
                 }
@@ -262,7 +330,7 @@ export default function EditTuition ({match}) {
             value={lesson.resource_url} onChange={handleLessonChange('resource_url', index)}
           /><br/></>}
                     />
-                    {!course.published && <ListItemSecondaryAction>
+                    {!tuition.posted && <ListItemSecondaryAction>
                     <IconButton edge="end" aria-label="up" color="primary" onClick={deleteLesson(index)}>
                         <DeleteIcon />
                       </IconButton>
@@ -273,7 +341,7 @@ export default function EditTuition ({match}) {
                 }
                 )}
                 </List>
-                </div>
+                </div> */}
               </Card>
         </div>)
 }

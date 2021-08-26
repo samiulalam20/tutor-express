@@ -27,7 +27,6 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Apply from './../application/Apply'
 import userModel from '../../server/models/user.model.js'
-import { apply } from 'file-loader'
 
 const useStyles = makeStyles(theme => ({
     root: theme.mixins.gutters({
@@ -125,14 +124,16 @@ export default function Tuition ({match}) {
       if (data.error) {
         setValues({...values, error: data.error})
       } else {
-        console.log(data)
+        console.log("data", data)
         setStats(data)
+        
       }
     })
     return function cleanup(){
       abortController.abort()
     }
   }, [match.params.tuitionId])
+  console.log("stats",stats)
   const removeTuition = (tuition) => {
     setValues({...values, redirect:true})
   }
@@ -198,15 +199,13 @@ export default function Tuition ({match}) {
                 </span>)
              }
                 {tuition.posted && (<div>
-                  <span className={classes.statSpan}><PeopleIcon /> {stats.totalApplied} enrolled </span>
-                  <Typography variant="body1" className={classes.subheading}>
-                        Location: <br/>
-                    </Typography>
+                  <span className={classes.statSpan}><PeopleIcon /> {stats.totalApplied} applied </span>
+                  
                   
 
                   </div>
                   )}
-                
+                {console.log(stats)}
                 </>
             }
                 />
@@ -263,16 +262,37 @@ export default function Tuition ({match}) {
                   
                 </>) 
                 : (
-                  <Button color="primary" variant="outlined">Enrolled</Button>
+                  <Button color="primary" variant="outlined">Applications</Button>
                 )
                 }
                 </span>)
              }
-                {tuition.posted && (<div>
-                  <span className={classes.statSpan}><PeopleIcon /> {stats.totalApplied} enrolled </span>
+                {tuition.posted &&  
+                  (<div>
+                    <span className={classes.statSpan}><PeopleIcon /> {stats.totalApplied} applied </span>
+                    {stats.applications && stats.applications.map((appl)=>{
+                      return (
+                        <>
+                        <Typography variant="body1" className={classes.subheading}>
+                          Name: {appl.tutorName}
+                          </Typography>
+                          
+                          <br/>
+                      <Typography variant="body1" className={classes.subheading}>
+                      
+                      schoolCur: {appl.schoolCur}
+                      <br/>
+                  </Typography>
+                  <Divider />
+                  </>
                   
-                  </div>
-                  )}
+                      )
+                                   
+                                         })}
+                    
+                      
+                    </div>)
+                }
                 
                 </>
             }
@@ -295,7 +315,7 @@ export default function Tuition ({match}) {
                 </div>
               </Card>
               <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Publish Tuition</DialogTitle>
+                <DialogTitle id="form-dialog-title">Post Tuition</DialogTitle>
                 <DialogContent>
                   <Typography variant="body1">Posting your tuition will not reveal your address. </Typography><Typography variant="body1">Are you sure you want to publish?</Typography></DialogContent>
                 <DialogActions>

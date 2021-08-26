@@ -35,7 +35,7 @@ const create = (req, res) => {
 
 
 /**
- * Load enrollment and append to req.
+ * Load application and append to req.
  */
 const applicationByID = async (req, res, next, id) => {
   try {

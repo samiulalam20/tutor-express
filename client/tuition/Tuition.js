@@ -273,17 +273,52 @@ export default function Tuition ({match}) {
                     {stats.applications && stats.applications.map((appl)=>{
                       return (
                         <>
+                        <List className={classes.root}>
+                          <ListItem alignItems="flex-start">
+                          <ListItemAvatar>
+                          <Avatar  />
+                          </ListItemAvatar>
+                            <ListItemText>
                         <Typography variant="body1" className={classes.subheading}>
                           Name: {appl.tutorName}
                           </Typography>
-                          
                           <br/>
-                      <Typography variant="body1" className={classes.subheading}>
-                      
-                      schoolCur: {appl.schoolCur}
+                  <Typography variant="body1" className={classes.subheading}>
+                          Gender: {appl.gender}
+                      </Typography>
+                  <br/>
+                  <Typography variant="body1" className={classes.subheading}>
+                          School Curriculum: {appl.schoolCur}
+                      </Typography>
                       <br/>
-                  </Typography>
+                      <Typography variant="body1" className={classes.subheading}>
+                          College Curriculum: {appl.collegeCur}
+                      </Typography>
+                      <br/>
+                      <Typography variant="body1" className={classes.subheading}>
+                          Background of Study: {appl.studyBg}
+                      </Typography>
+                      <br/>
+                      <Typography variant="body1" className={classes.subheading}>
+                          Name of University: {appl.universityName}
+                      </Typography>
+                      <br/>
+                      <Typography variant="body1" className={classes.subheading}>
+                          Major Subject: {appl.major}
+                      </Typography>
+                      <br/>
+                      <Typography variant="body1" className={classes.subheading}>
+                          Present Location: {appl.tutorLocation}
+                      </Typography>
+                      <br/>
+                      <Typography variant="body1" className={classes.subheading}>
+                          Contact Number: {appl.tutorPhoneNum}
+                      </Typography>
+                      <br/>
                   <Divider />
+                  </ListItemText>
+                  </ListItem>
+                  </List>
                   </>
                   
                       )

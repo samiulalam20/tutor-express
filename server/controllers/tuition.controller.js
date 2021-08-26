@@ -32,7 +32,7 @@ const create = (req, res) => {
 }
 
 /**
- * Load course and append to req.
+ * Load tuition and append to req.
  */
 const tuitionByID = async (req, res, next, id) => {
   try {

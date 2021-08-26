@@ -91,6 +91,30 @@ export default function Apply(props) {
         'Dhanmondi, Dhaka',
   ]
 
+  const uniName= [
+    'Independent University Bangladesh (IUB)',
+        'North South University (NSU)',
+        'BUET',
+        'Dhaka University (DU)',
+        'East West University (EWU)',
+        'MIST',
+        'BUP',
+        'United International University (UIU)',
+        'Brac University'
+  ]
+
+  const maj= [
+    'Computer Science and Engineering (CSE)',
+        'EEE',
+        'BBA in Marketing',
+        'BBA in Finance',
+        'BBA in Accounting',
+        'Pharma',
+        'Chemical Engineering',
+        'Mechanical Engineering',
+        'Biochemistry'
+  ]
+
   const handleChange = name => event => {
     const value = name === 'image'
       ? event.target.files[0]
@@ -169,8 +193,45 @@ export default function Apply(props) {
         </RadioGroup>
       </FormControl><br/>
 
-          <TextField id="universityName" label="Name of University" className={classes.textField} value={values.universityName} onChange={handleChange('universityName')} margin="normal"/><br/>
-          <TextField id="major" label="Major" className={classes.textField} value={values.major} onChange={handleChange('major')} margin="normal"/><br/>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="universityName">Name of University</InputLabel>
+          <Select
+          className={classes.textField}
+          labelId="universityName"
+          id="universityName"
+          value={values.universityName}
+          onChange={handleChange('universityName')}
+          input={<Input id="universityName" />}
+          >
+          {uniName.map((universityName) => (
+            <MenuItem key={universityName} value={universityName} >
+              {universityName}
+            </MenuItem>
+          ))}
+
+
+        </Select>
+      </FormControl>
+          
+      <FormControl className={classes.formControl}>
+        <InputLabel id="major">Major Subject</InputLabel>
+          <Select
+          className={classes.textField}
+          labelId="major"
+          id="major"
+          value={values.major}
+          onChange={handleChange('major')}
+          input={<Input id="major" />}
+          >
+          {maj.map((major) => (
+            <MenuItem key={major} value={major} >
+              {major}
+            </MenuItem>
+          ))}
+
+
+        </Select>
+      </FormControl>
           
       <Button variant="contained" color="secondary" onClick={clickApply}> Apply </Button>
       </CardContent>

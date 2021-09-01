@@ -267,7 +267,7 @@ export default function Tuition ({match}) {
                 }
                 </span>)
              }
-                {tuition.posted &&  
+                {tuition.posted && auth.isAuthenticated().user && auth.isAuthenticated().user._id == tuition.guardian._id &&
                   (<div>
                     <span className={classes.statSpan}><PeopleIcon /> {stats.totalApplied} applied </span>
                     {stats.applications && stats.applications.map((appl)=>{

@@ -102,7 +102,7 @@ export default function Home(){
       {auth.isAuthenticated().user && (
       <Card className={`${classes.card} ${classes.enrolledCard}`}>
         <Typography variant="h6" component="h2" className={classes.enrolledTitle}>
-            Tuitions you have enrolled
+            Tuitions you have applied
         </Typography>
         {applied.length != 0 ? (<Applications applications={applied}/>)
                              : (<Typography variant="body1" className={classes.noTitle}>No Tuitions.</Typography>)

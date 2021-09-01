@@ -25,13 +25,13 @@ const useStyles = makeStyles(theme => ({
     padding: '12px 0 10px'
   },
   tile: {
-    textAlign: 'center'
+    textAlign: 'center',
   },
   image: {
     height: '100%'
   },
   tileBar: {
-    backgroundColor: 'rgba(0, 0, 0, 0.85)',
+    backgroundColor: 'rgba(160, 188, 245, 1)',
     textAlign: 'left'
   },
   tileTitle: {
@@ -55,13 +55,10 @@ export default function Applications(props){
         <GridList cellHeight={120} className={classes.gridList} cols={4}>
           {props.applications.map((tuition, i) => (
             <GridListTile key={i} className={classes.tile}>
-              <Link to={"/learn/"+tuition._id}><img className={classes.image} src={'/api/tuitions/photo/'+tuition.tuition._id} alt={tuition.tuition.category} /></Link>
+              <Link to={"/learn/"+tuition._id}>Applied on: {tuition.applied}</Link>
               <GridListTileBar className={classes.tileBar}
-                title={<Link to={"/learn/"+tuition._id} className={classes.tileTitle}>{tuition.tuition.studentClass}</Link>}
-                actionIcon={<div className={classes.action}>
-                 {tuition.completed ? (<CompletedIcon color="secondary"/>)
-                 : (<InProgressIcon className={classes.progress} />)
-                }</div>}
+                title={<Link to={"/learn/"+tuition._id} className={classes.tileTitle}>{tuition.tuition}</Link>}
+                
               />
             </GridListTile>
           ))}
